@@ -549,11 +549,11 @@ while read line1; do  # build time string line for each remailer BEGIN
          varrname=$(grep -w $nameortime $filePath/assay00-mailer/IPPAMlist2.txt)  # get remailer name stats rec if present
 
          if [[ $(cat $filePath/assay00-mailer/IPPAMlist2.txt) =~ $nameortime ]]; then  # change a remailer exit name to red
-            if [[ $varrname =~ "middle" ]]; then
+#            if [[ $varrname =~ "middle" ]]; then
                remcolor="000040"
-            else
-               remcolor="FF0080"
-            fi
+#            else
+#               remcolor="FF0080"
+#            fi
          fi
 
          echo "<td align=\"center\" bgcolor=\"$bgcolor1\"><font face=\"Verdana\" size=\"2\" color=\"$remcolor\">&thinsp;$nameortime&thinsp;</font></td>" >> $filePath/$webpgtmpnm # build time
@@ -610,11 +610,11 @@ fi
 
          varrname=$(grep -w $nameortime $filePath/assay00-mailer/IPPAMlist2.txt)  # get remailer name stats rec if present
          if [[ $(cat $filePath/assay00-mailer/IPPAMlist2.txt) =~ $nameortime ]]; then
-            if [[ $varrname =~ "middle" ]]; then
+#            if [[ $varrname =~ "middle" ]]; then
                remcolor="000040"
-            else
-               remcolor="FF0080"
-            fi
+#            else
+#               remcolor="FF0080"
+#            fi
          fi
 
          echo "<td align=\"center\" bgcolor=\"$bgcolor1\"><font face=\"Verdana\" size=\"2\" color=\"$remcolor\">&thinsp;$nameortime&thinsp;</font></td>" >> $filePath/$webpgtmpnm # build time
