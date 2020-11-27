@@ -5,8 +5,8 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 ```
 #!/bin/bash
 #
-# Remailer-Proc-Pinger-Assay.sh  v1.4  
-#  
+# Remailer-Proc-Pinger-Assay.sh  v1.4
+#
 # Script to create the Remailer-Proc-Pinger-Assay.sh stat records page
 # A message sent hourly to every remailer (chain: <remailer to test>,<your remailer>)
 # by this script at ??:01 hours to determine actual turn around
@@ -16,10 +16,9 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 #
 # The 'Remailer-Proc-Pinger-Assay.sh' script should be run in a folder: '/root/assay00/'
 #
-# To exclude a remailer from the assay, place its short name in the file: Remailer-Proc-Pinger.blk
+# To 'exclude a remailer from the assay', place its short name in the file: 'Remailer-Proc-Pinger.blk'
 #
-# This script is executed every minute to keep the webpage current.
-#
+# This script is executed every minute to keep the webpage current with this cronjob:
 #'*/1 * * * * /root/assay00/Remailer-Proc-Pinger-Assay.sh &> /dev/null'
 #
 #'-----------------------------------------------------------------------------------------'#
@@ -54,9 +53,10 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 # 'dest.alw.nonpublished entries:'
 # 'assay00@<yourRemailerDN>'
 #
-# These two parameters below must be modified:
+# These three parameters below must be modified:
 #   MyShortNm="<your remailer short name>"  example: inwtx or austria
 #   MyDN="<your remailer domain name>"      example: dizum.com or mixharbor.xyz
+#   webpgpath="/path/to/html" folder        example: (nginx) /var/www/html
 #
 # Example of generated output heaaders:
 #Chain: redjohn,inwtx
@@ -74,10 +74,10 @@ filePath=${0%/*} # current file path $filePath/
 
 MyShortNm="<your remailer short name>"
 MyDN="<your remailer domain name>"
+webpgpath="/var/www/html"
 
 assayid="assay00"
 procit="y"
-webpgpath="/var/www/html"
 webpgtmpnm="temp.html"
 webpgtmpnm2="temp2.html"
 webpgnm="$assayid.html"
@@ -87,6 +87,9 @@ nored="</b></font>"
 
 if [ ! -e $filePath/Remailer-Proc-Pinger.blk ]; then
    echo "slow" > $filePath/Remailer-Proc-Pinger.blk
+   printf '\x89\x50\x4E\x47\x0D\x0A\x1A\x0A\x00\x00\x00\x0D\x49\x48\x44\x52\x00\x00\x00\x12\x00\x00\x00\x0B\x08\x06\x00\x00\x00\x72\x17\xDD\x04\x00\x00\x00\x01\x73\x52\x47\x42\x00\xAE\xCE\x1C\xE9\x00\x00\x00\x04\x67\x41\x4D\x41\x00\x00\xB1\x8F\x0B\xFC\x61\x05\x00\x00\x00\x09\x70\x48\x59\x73\x00\x00\x0E\xC2\x00\x00\x0E\xC2\x01\x15\x28\x4A\x80\x00\x00\x00\xD8\x49\x44\x41\x54\x38\x4F\x63\xFC\xBA\xF2\xD3\x7F\x06\x2A\x00\x26\x28\x4D\x31\xA0\x93\x41\x17\x96\x32\x70\x87\x97\x40\xF0\xEC\x2B\x50\xC1\x97\x0C\x53\x6B\x4B\x18\x72\x2F\x40\xB9\x50\x80\x6A\xD0\x8B\xBD\x0C\xCE\xC8\x9A\x0C\xA2\x19\xBE\xAE\xEC\x01\xE2\x04\x86\xA4\x47\x2F\x19\xEE\x02\x85\x76\xCD\x5E\xCA\xC0\x60\x69\x08\x91\x47\x02\x40\x83\x40\x9A\xAE\x30\xE4\x82\x0C\x98\xCA\xC0\x30\x0B\xA4\x31\x55\x07\x22\x0B\x05\x77\xB7\xED\x62\x60\x08\x76\x66\x60\xD8\xD6\xC7\xB0\xD9\xB4\x88\x21\x5B\x0A\x2A\x81\x04\x90\x62\x0D\x64\xD8\x02\x86\x79\x6A\x9E\x0C\x97\x9A\x9D\x19\x94\x21\x82\x40\x43\xFA\x18\xD2\x18\xA2\x19\xF6\x7A\x89\x03\x5D\x53\xC2\x10\xB8\x07\x2A\xC1\x20\xC5\xD0\x35\x11\x68\xA8\x04\x84\x87\x19\xFD\x20\xEF\x81\x5C\x06\x34\x0C\xE4\x02\xBD\x85\xCF\xA0\x12\x86\x0C\xEB\x57\x46\x33\xB8\x81\x98\xC0\xB0\xCB\x05\x1A\x3E\xD9\x00\x2C\x01\x06\xC3\x36\x1D\x31\x30\x00\x00\xF0\x90\x4B\xBF\xD1\xA0\x39\x5C\x00\x00\x00\x00\x49\x45\x4E\x44\xAE\x42\x60' > $webpgpath/purple.png  # purple.png
+   printf '\x89\x50\x4e\x47\x0d\x0a\x1a\x0a\x00\x00\x00\x0d\x49\x48\x44\x52\x00\x00\x00\x10\x00\x00\x00\x0b\x08\x06\x00\x00\x00\x76\xe2\x0d\x39\x00\x00\x00\x01\x73\x52\x47\x42\x00\xae\xce\x1c\xe9\x00\x00\x00\x04\x67\x41\x4d\x41\x00\x00\xb1\x8f\x0b\xfc\x61\x05\x00\x00\x00\x09\x70\x48\x59\x73\x00\x00\x0e\xc4\x00\x00\x0e\xc4\x01\x95\x2b\x0e\x1b\x00\x00\x00\x51\x49\x44\x41\x54\x28\x53\x63\xfc\x7f\xe2\xc0\x7f\x06\x0a\x00\x13\x94\x26\x1b\xd0\xc6\x80\x77\x21\x29\x60\xfc\x17\x8d\x8f\x0d\xe0\x0c\x03\x74\x0d\x42\x6b\xe6\x40\x59\xa8\x00\xa7\x17\x90\x35\xe0\xd2\x0c\x02\x38\x0d\x40\x76\x01\x2e\xe7\x83\x00\xce\x30\x00\x01\x90\xcd\x30\xdb\x49\x0e\x03\x62\x01\x6d\xa2\x91\x78\xc0\xc0\x00\x00\x21\x4f\x21\x3b\xf9\x08\x7d\x7f\x00\x00\x00\x00\x49\x45\x4e\x44\xae\x42\x60' > $webpgpath/redx.png  # redx.png
+   printf '\x89\x50\x4E\x47\x0D\x0A\x1A\x0A\x00\x00\x00\x0D\x49\x48\x44\x52\x00\x00\x00\x10\x00\x00\x00\x0B\x08\x06\x00\x00\x00\x76\xE2\x0D\x39\x00\x00\x00\x01\x73\x52\x47\x42\x00\xAE\xCE\x1C\xE9\x00\x00\x00\x04\x67\x41\x4D\x41\x00\x00\xB1\x8F\x0B\xFC\x61\x05\x00\x00\x00\x09\x70\x48\x59\x73\x00\x00\x0E\xC4\x00\x00\x0E\xC4\x01\x95\x2B\x0E\x1B\x00\x00\x00\x51\x49\x44\x41\x54\x28\x53\x63\xFC\x0F\x04\x0C\x14\x00\x26\x28\x4D\x36\xA0\x8D\x01\xEF\x64\x55\xC1\xF8\xEF\xC9\x83\x28\x7C\x6C\x00\x67\x18\xA0\x6B\x10\x7A\x7C\x1B\xCA\x42\x05\x38\xBD\x80\xAC\x01\x97\x66\x10\xC0\x69\x00\xB2\x0B\x70\x39\x1F\x04\x70\x86\x01\x08\x80\x6C\x86\xD9\x4E\x72\x18\x10\x0B\x68\x13\x8D\xC4\x03\x06\x06\x00\x36\x45\x22\x4F\xFE\xAA\xD6\x77\x00\x00\x00\x00\x49\x45\x4E\x44\xAE\x42\x60' > $webpgpath/whitex.png  # whitex.png
 fi
 
 ## BEGIN This was the former Remailer-Proc-Pinger-Assay-Mailer.sh routine that was incorporated here.
@@ -689,13 +692,13 @@ echo "=== Final HTML end records ==="
 echo "</tr><tr>" >> $filePath/$webpgtmpnm
 echo "</tr></table>" >> $filePath/$webpgtmpnm
 
-#echo "<table align=left>" >> $filePath/$webpgtmpnm
-#echo "<tr>" >> $filePath/$webpgtmpnm
-#echo "<td><font face=\"Verdana\" size=\"1\" color=\"000040\">[Message sent :00 to every remailer (chain: &ltremailer&gt,inwtx) to determine actual turn around time #and continuity. (cycle time h:mm) (<font face=\"Verdana\" size=\"1\" color=\"FF0080\">name</font><font face=\"Verdana\" size=\"1\" color=\"000040\"> = exit) #(<sub><img src=\"whitex.png\" HEIGHT="11" alt=\"x\"></sub> = pending) (<sub><img src=\"redx.png\" HEIGHT="11" alt=\"x\"></sub> = lost&gt6h)  (<sub><img #src=\"purple0.png\" HEIGHT="11" alt=\"0\"></sub> = previous 24 hr loss)  (updt=5m)]</font></td>" >> $filePath/$webpgtmpnm
-#echo "</font>" >> $filePath/$webpgtmpnm
-#
-#echo "</tr>" >> $filePath/$webpgtmpnm
-#echo "</table>" >> $filePath/$webpgtmpnm
+echo "<table align=left>" >> $filePath/$webpgtmpnm
+echo "<tr>" >> $filePath/$webpgtmpnm
+echo "<td><font face=\"Verdana\" size=\"1\" color=\"000040\">[Message sent :00 to every remailer (chain: &ltremailer&gt,inwtx) to determine actual turn around time #and continuity. (cycle time h:mm) (<font face=\"Verdana\" size=\"1\" color=\"FF0080\">name</font><font face=\"Verdana\" size=\"1\" color=\"000040\"> = exit) #(<sub><img src=\"whitex.png\" HEIGHT="11" alt=\"x\"></sub> = pending) (<sub><img src=\"redx.png\" HEIGHT="11" alt=\"x\"></sub> = lost&gt6h)  (<sub><img src=\"purple.png\" HEIGHT="11" alt=\"0\"></sub> = previous 24 hr loss)  (updt=5m)]</font></td>" >> $filePath/$webpgtmpnm
+echo "</font>" >> $filePath/$webpgtmpnm
+
+echo "</tr>" >> $filePath/$webpgtmpnm
+echo "</table>" >> $filePath/$webpgtmpnm
 
 cat $filePath/$webpgtmpnm > $webpgpath/$webpgnm
 rm $filePath/$webpgtmpnm
@@ -706,6 +709,5 @@ rm $filePath/$webpgtmpnm2
 DeleteFiles
 
 exit 0
-
 
 ```
