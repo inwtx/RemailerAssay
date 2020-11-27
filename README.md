@@ -5,8 +5,8 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 ```
 #!/bin/bash
 #
-#Remailer-Proc-Pinger-Assay.sh  v1.2
-#
+# Remailer-Proc-Pinger-Assay.sh  v1.4  
+#  
 # Script to create the Remailer-Proc-Pinger-Assay.sh stat records page
 # A message sent hourly to every remailer (chain: <remailer to test>,<your remailer>)
 # by this script at ??:01 hours to determine actual turn around
@@ -16,9 +16,12 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 #
 # The 'Remailer-Proc-Pinger-Assay.sh' script should be run in a folder: '/root/assay00/'
 #
+# To exclude a remailer from the assay, place its short name in the file: Remailer-Proc-Pinger.blk
+#
 # This script is executed every minute to keep the webpage current.
 #
 #'*/1 * * * * /root/assay00/Remailer-Proc-Pinger-Assay.sh &> /dev/null'
+#
 #'-----------------------------------------------------------------------------------------'#
 #
 
@@ -40,7 +43,6 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 #
 # A message is sent hourly to every remailer (chain: <remailer>,inwtx)
 # to determine actual turn around time and continuity.
-# (cycle time h:mm) (x: pending) (x = lost>6h) (updt=5m)
 #
 # The way to set up a middle remailer to act as an exit and send messages to a particular email address:
 # Remailer files:
@@ -61,7 +63,6 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 #To: assay00@inwtx.net
 #Subject: Test a
 #
-#Test
 #'--------------------------------------------------------------------------------------'#
 
 export PATH=$PATH:/etc
@@ -69,10 +70,10 @@ export PATH=$PATH:/var/www
 export PATH=$PATH:/var/www/html
 export PATH=$PATH:/usr/bin
 
-filePath=${0%/*} # current file path  $filePath/
+filePath=${0%/*} # current file path $filePath/
 
-MyShortNm="your remailer short name"
-MyDN="your remailer domain name"
+MyShortNm="<your remailer short name>"
+MyDN="<your remailer domain name>"
 
 assayid="assay00"
 procit="y"
@@ -84,11 +85,13 @@ webpgnm2="fail.html"
 mkred="<font color=\$FF0000><b>"  # must put one space after $mkred or outside of " "
 nored="</b></font>"
 
+if [ ! -e $filePath/Remailer-Proc-Pinger.blk ]; then
+   echo "slow" > $filePath/Remailer-Proc-Pinger.blk
+fi
 
 ## BEGIN This was the former Remailer-Proc-Pinger-Assay-Mailer.sh routine that was incorporated here.
 
 if [[ $(date +"%M") = "01" ]]; then
-echo "pt1: remailer stats -  $(date '+%Y.%m.%d %k.%M.%S')" >> dummy.time
    statDN="http://sec3.net/echolot/mlist2.txt"
    ##statDN="http://www.mixmin.net/echolot/mlist2.txt"
 
@@ -409,6 +412,7 @@ while read "line1"; do  # create epoch date for lines in stat11.txt
       echo "$line1 $vardtIPP2" >> $filePath/stat12.txt
 done< $filePath/stat11.txt
 
+# This routine needs perfecting
 #   1      2       3    4  5   6   7     8     Remailer-Proc-AWOL.log
 #hermetix lost - sent: Nov 18 0000 Z  GMTepoch
 
@@ -675,7 +679,8 @@ else
    echo "<td align=\"center\" bgcolor=\"F5A9F2\"><font face=\"Verdana\" size=\"2\" color=\"000040\">&thinsp;$pastmissed&thinsp;</font></td>" >> $filePath/$webpgtmpnm # build previous 24 missed count
 fi
 ## build previous 24 hour records END
-                                              
+
+#                                              
 
 #'================================='#
 echo "=== Final HTML end records ==="
@@ -700,7 +705,7 @@ rm $filePath/$webpgtmpnm2
 
 DeleteFiles
 
-#logger "Remailer-Proc-Pinger.exe.sh end"
-
 exit 0
+
+
 ```
