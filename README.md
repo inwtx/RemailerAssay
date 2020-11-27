@@ -684,13 +684,13 @@ echo "=== Final HTML end records ==="
 echo "</tr><tr>" >> $filePath/$webpgtmpnm
 echo "</tr></table>" >> $filePath/$webpgtmpnm
 
-echo "<table align=left>" >> $filePath/$webpgtmpnm
-echo "<tr>" >> $filePath/$webpgtmpnm
-echo "<td><font face=\"Verdana\" size=\"1\" color=\"000040\">[Message sent :00 to every remailer (chain: &ltremailer&gt,inwtx) to determine actual turn around time and continuity. (cycle time h:mm) (<font face=\"Verdana\" size=\"1\" color=\"FF0080\">name</font><font face=\"Verdana\" size=\"1\" color=\"000040\"> = exit) (<sub><img src=\"whitex.png\" HEIGHT="11" alt=\"x\"></sub> = pending) (<sub><img src=\"redx.png\" HEIGHT="11" alt=\"x\"></sub> = lost&gt6h)  (<sub><img src=\"purple0.png\" HEIGHT="11" alt=\"0\"></sub> = previous 24 hr loss)  (updt=5m)]</font></td>" >> $filePath/$webpgtmpnm
-echo "</font>" >> $filePath/$webpgtmpnm
-
-echo "</tr>" >> $filePath/$webpgtmpnm
-echo "</table>" >> $filePath/$webpgtmpnm
+#echo "<table align=left>" >> $filePath/$webpgtmpnm
+#echo "<tr>" >> $filePath/$webpgtmpnm
+#echo "<td><font face=\"Verdana\" size=\"1\" color=\"000040\">[Message sent :00 to every remailer (chain: &ltremailer&gt,inwtx) to determine actual turn around time #and continuity. (cycle time h:mm) (<font face=\"Verdana\" size=\"1\" color=\"FF0080\">name</font><font face=\"Verdana\" size=\"1\" color=\"000040\"> = exit) #(<sub><img src=\"whitex.png\" HEIGHT="11" alt=\"x\"></sub> = pending) (<sub><img src=\"redx.png\" HEIGHT="11" alt=\"x\"></sub> = lost&gt6h)  (<sub><img #src=\"purple0.png\" HEIGHT="11" alt=\"0\"></sub> = previous 24 hr loss)  (updt=5m)]</font></td>" >> $filePath/$webpgtmpnm
+#echo "</font>" >> $filePath/$webpgtmpnm
+#
+#echo "</tr>" >> $filePath/$webpgtmpnm
+#echo "</table>" >> $filePath/$webpgtmpnm
 
 cat $filePath/$webpgtmpnm > $webpgpath/$webpgnm
 rm $filePath/$webpgtmpnm
