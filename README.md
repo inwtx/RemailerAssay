@@ -5,7 +5,7 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 ```
 #!/bin/bash
 #
-# Remailer-Proc-Pinger-Assay.sh  v1.6
+# Remailer-Proc-Pinger-Assay.sh  v1.7
 #
 # Script to create the Remailer-Proc-Pinger-Assay.sh stat records page
 # A message sent hourly to every remailer (chain: <remailer to test>,<your remailer>)
@@ -14,7 +14,7 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 # user assay00 does not use procmail and should not be setup for procmail.  The mail is
 # found in /var/mail/assay00.
 #
-# The 'Remailer-Proc-Pinger-Assay.sh' script should be run in a folder: '/etc/assay00/'
+# The 'Remailer-Proc-Pinger-Assay.sh' script should be run in a folder in: '/etc/assay00/'
 #
 # To 'exclude a remailer from the assay', place its short name in the file: 'Remailer-Proc-Pinger.blk'
 #
