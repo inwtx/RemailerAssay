@@ -14,12 +14,12 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 # user assay00 does not use procmail and should not be setup for procmail.  The mail is
 # found in /var/mail/assay00.
 #
-# The 'Remailer-Proc-Pinger-Assay.sh' script should be run in a folder: '/root/assay00/'
+# The 'Remailer-Proc-Pinger-Assay.sh' script should be run in a folder: '/etc/assay00/'
 #
 # To 'exclude a remailer from the assay', place its short name in the file: 'Remailer-Proc-Pinger.blk'
 #
 # This script is executed every minute to keep the webpage current with this cronjob:
-#'*/1 * * * * /root/assay00/Remailer-Proc-Pinger-Assay.sh &> /dev/null'
+#'*/1 * * * * /etc/assay00/Remailer-Proc-Pinger-Assay.sh &> /dev/null'
 #
 #'-----------------------------------------------------------------------------------------'#
 #
