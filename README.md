@@ -5,7 +5,7 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 ```
 #!/bin/bash
 #
-# Remailer-Proc-Pinger-Assay.sh  v1.5
+# Remailer-Proc-Pinger-Assay.sh  v1.6
 #
 # Script to create the Remailer-Proc-Pinger-Assay.sh stat records page
 # A message sent hourly to every remailer (chain: <remailer to test>,<your remailer>)
@@ -72,8 +72,9 @@ export PATH=$PATH:/usr/bin
 
 filePath=${0%/*} # current file path $filePath/
 
-MyShortNm="<your remailer short name>"
-MyDN="<your remailer domain name>"
+MyShortNm="your remailer short name"
+MyDN="your remailer domain name"
+
 webpgpath="/var/www/html"
 
 assayid="assay00"
@@ -471,7 +472,7 @@ echo "=== Create GMT HTML time header only ==="
 echo "<table border=\"0\" cellpadding=\"2\" cellspacing=\"4\">" > $filePath/$webpgtmpnm
 echo "<tr>" >> $filePath/$webpgtmpnm
 echo "<!-- top header -->" >> $filePath/$webpgtmpnm
-echo "<td align=\"left\" bgcolor=\"EBEAD9\"><font face=\"Verdana\" size=\"2\" color=\"000040\">Mixmaster Remailer 24<small>h</small> Chronograph/Continuity Analysis&nbsp;&thinsp;- $(date -u +"%F - %H:%M GMT")</font></td>" >> $filePath/$webpgtmpnm
+echo "<td align=\"left\" bgcolor=\"EBEAD9\"><font face=\"Verdana\" size=\"2\" color=\"000040\">Mixmaster Remailer 24<small>h</small> Chronograph/Continuity Analysis&nbsp;&nbsp;$(date -u +"%F - %H:%M %Z")&nbsp;-&nbsp;$(date +"%H:%M %Z")</font></td>" >> $filePath/$webpgtmpnm
 
 echo "</tr>" >> $filePath/$webpgtmpnm
 echo "</table>" >> $filePath/$webpgtmpnm
