@@ -1,11 +1,11 @@
 # Remailer Assay Script  
 Mixmaster Remailer 24h Chronograph/Continuity Analysis  
-
-
+  
+  
 ```
 #!/bin/bash
 #
-# Remailer-Proc-Pinger-Assay.sh  v1.7
+# Remailer-Proc-Pinger-Assay.sh  v1.8
 #
 # Script to create the Remailer-Proc-Pinger-Assay.sh stat records page
 # A message sent hourly to every remailer (chain: <remailer to test>,<your remailer>)
@@ -14,7 +14,7 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 # user assay00 does not use procmail and should not be setup for procmail.  The mail is
 # found in /var/mail/assay00.
 #
-# The 'Remailer-Proc-Pinger-Assay.sh' script should be run in a folder in: '/etc/assay00/'
+# The 'Remailer-Proc-Pinger-Assay.sh' script should be run in a folder: '/etc/assay00/'
 #
 # To 'exclude a remailer from the assay', place its short name in the file: 'Remailer-Proc-Pinger.blk'
 #
@@ -470,8 +470,10 @@ echo "=== Create GMT HTML time header only ==="
 
 # create title line
 echo "<table border=\"0\" cellpadding=\"2\" cellspacing=\"4\">" > $filePath/$webpgtmpnm
+
 echo "<tr>" >> $filePath/$webpgtmpnm
 echo "<!-- top header -->" >> $filePath/$webpgtmpnm
+#echo "<td align=\"left\" bgcolor=\"EBEAD9\"><font face=\"Verdana\" size=\"2\" color=\"000040\">Mixmaster Remailer 24<small>h</small> Chronograph/Continuity Analysis&nbsp;&thinsp;&nbsp;-&nbsp;$(date -u +"%F - %H:%M %Z")&nbsp;-&nbsp;$(date +"%H:%M %Z")</font></td>" >> $filePath/$webpgtmpnm
 echo "<td align=\"left\" bgcolor=\"EBEAD9\"><font face=\"Verdana\" size=\"2\" color=\"000040\">Mixmaster Remailer 24<small>h</small> Chronograph/Continuity Analysis&nbsp;&nbsp;$(date -u +"%F - %H:%M %Z")&nbsp;-&nbsp;$(date +"%H:%M %Z")</font></td>" >> $filePath/$webpgtmpnm
 
 echo "</tr>" >> $filePath/$webpgtmpnm
@@ -554,9 +556,9 @@ while read line1; do  # build time string line for each remailer BEGIN
          echo "<!-- remailer header -->" >> $filePath/$webpgtmpnm
          ChgRowColor
          nameortime=$(awk '{print $7}' <<< $line1)  # get remailer name
-         varrname=$(grep -w $nameortime $filePath/assay00-mailer/IPPAMlist2.txt)  # get remailer name stats rec if present
+         varrname=$(grep -w $nameortime $filePath/IPPAMlist2.txt)  # get remailer name stats rec if present
 
-         if [[ $(cat $filePath/assay00-mailer/IPPAMlist2.txt) =~ $nameortime ]]; then  # change a remailer exit name to red
+         if [[ $(cat $filePath/IPPAMlist2.txt) =~ $nameortime ]]; then  # change a remailer exit name to red
 #            if [[ $varrname =~ "middle" ]]; then
                remcolor="000040"
 #            else
@@ -616,8 +618,8 @@ fi
          echo "<!-- remailer header -->" >> $filePath/$webpgtmpnm
          nameortime=$(awk '{print $7}' <<<$line1)  # get remailer name
 
-         varrname=$(grep -w $nameortime $filePath/assay00-mailer/IPPAMlist2.txt)  # get remailer name stats rec if present
-         if [[ $(cat $filePath/assay00-mailer/IPPAMlist2.txt) =~ $nameortime ]]; then
+         varrname=$(grep -w $nameortime $filePath/IPPAMlist2.txt)  # get remailer name stats rec if present
+         if [[ $(cat $filePath/IPPAMlist2.txt) =~ $nameortime ]]; then
 #            if [[ $varrname =~ "middle" ]]; then
                remcolor="000040"
 #            else
@@ -695,11 +697,12 @@ echo "</tr></table>" >> $filePath/$webpgtmpnm
 
 echo "<table align=left>" >> $filePath/$webpgtmpnm
 echo "<tr>" >> $filePath/$webpgtmpnm
-echo "<td><font face=\"Verdana\" size=\"1\" color=\"000040\">[Message sent :00 to every remailer (chain: &ltremailer&gt,$MyShortNm) to determine actual turn around time #and continuity. (cycle time h:mm) (<font face=\"Verdana\" size=\"1\" color=\"FF0080\">name</font><font face=\"Verdana\" size=\"1\" color=\"000040\"> = exit) (<sub><img src=\"whitex.png\" HEIGHT="11" alt=\"x\"></sub> = pending) (<sub><img src=\"redx.png\" HEIGHT="11" alt=\"x\"></sub> = lost&gt6h)  (<sub><img src=\"purple.png\" HEIGHT="11" alt=\"0\"></sub> = previous 24 hr loss)  (updt=5m)]</font></td>" >> $filePath/$webpgtmpnm
+echo "<td><font face=\"Verdana\" size=\"1\" color=\"000040\">[Message sent :00 to every remailer (chain: &ltremailer&gt,$MyShortNm) to determine actual turn around time #and continuity. (cycle time h:mm) (<font face=\"Verdana\" size=\"1\" color=\"FF0080\">name</font><font face=\"Verdana\" size=\"1\" color=\"000040\"> = exit)(<sub><img src=\"whitex.png\" HEIGHT="11" alt=\"x\"></sub> = pending) (<sub><img src=\"redx.png\" HEIGHT="11" alt=\"x\"></sub> = lost&gt6h) (<sub><img src=\"purple.png\" HEIGHT="11" alt=\"0\"></sub> = previous 24 hr loss)  (updt=5m)]</font></td>" >> $filePath/$webpgtmpnm
 echo "</font>" >> $filePath/$webpgtmpnm
 
 echo "</tr>" >> $filePath/$webpgtmpnm
 echo "</table>" >> $filePath/$webpgtmpnm
+
 
 cat $filePath/$webpgtmpnm > $webpgpath/$webpgnm
 rm $filePath/$webpgtmpnm
