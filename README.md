@@ -5,7 +5,7 @@ Mixmaster Remailer 24h Chronograph/Continuity Analysis
 ```
 #!/bin/bash
 #
-# Remailer-Proc-Pinger-Assay.sh  v1.9
+# Remailer-Proc-Pinger-Assay.sh  v1.10
 #
 # Script to create the Remailer-Proc-Pinger-Assay.sh stat records page
 # A message sent hourly to every remailer (chain: <remailer to test>,<your remailer>)
