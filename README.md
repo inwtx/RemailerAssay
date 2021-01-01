@@ -117,9 +117,9 @@ if [[ $(date +"%M") = "01" ]]; then
          echo "Chain: $ShortName,$MyShortNm" > $filePath/Remailer-Proc-Pinger-Assay-Mailer.txt
 
          echo "To: $assayid@$MyDN" >> $filePath/Remailer-Proc-Pinger-Assay-Mailer.txt
-         echo "Subject: $ShortName $(date +"%a %d %b %G %H:%M")" "$(date -u +"%H")" >> $filePath/Remailer-Proc-Pinger-Assay-Mailer.txt  # Mon 16 Sep 12:07 2019 17
+         echo "Subject: $ShortName $(date +"%a %d %b %Y %H:%M")" "$(date -u +"%H")" >> $filePath/Remailer-Proc-Pinger-Assay-Mailer.txt  # Mon 16 Sep 12:07 2019 17
          echo "" >> $filePath/Remailer-Proc-Pinger-Assay-Mailer.txt
-         echo "$ShortName $(date +"%a %d %b %H:%M %G")" "$(date -u +"%H")" >> $filePath/Remailer-Proc-Pinger-Assay-Mailer.txt
+         echo "$ShortName $(date +"%a %d %b %H:%M %Y")" "$(date -u +"%H")" >> $filePath/Remailer-Proc-Pinger-Assay-Mailer.txt
 
          /usr/bin/mixmaster $filePath/Remailer-Proc-Pinger-Assay-Mailer.txt --send --mail
          sleep 3
@@ -370,8 +370,8 @@ while read "line1"; do
 
 #      1         2       3  4   5   6     7   8   9        10               11
 #message-lost epochdate Sat 12 Nov 2016 13:00 19  19     austria            x
-             vardtIPP=$(date -u -d "$(date +"%G-%m-%d $i")"  +%s)  # create cur date/cur gmt from array and put in x rec
-             echo "message-lost $vardtIPP $(date '+%a %d %b %G %H:00' | cut -d':' -f1-2) $(date -u +'%H')  $i  $savshortnm  x" >> $filePath/Remailer-Proc-AWOL.txt # sav for logging section
+             vardtIPP=$(date -u -d "$(date +"%Y-%m-%d $i")"  +%s)  # create cur date/cur gmt from array and put in x rec
+             echo "message-lost $vardtIPP $(date '+%a %d %b %Y %H:00' | cut -d':' -f1-2) $(date -u +'%H')  $i  $savshortnm  x" >> $filePath/Remailer-Proc-AWOL.txt # sav for logging section
           fi
       done
 
@@ -412,7 +412,7 @@ sed -i '$!N; /^\(.*\)\n\1$/!P; D' $filePath/Remailer-Proc-AWOL.log      # remove
 
 while read "line1"; do  # create epoch date for lines in stat11.txt
       vargt=$(awk '{print $6}' <<<$line1)
-      vardtIPP2=$(date -u -d "$(date +"%G-%m-%d $vargt")"  +%s)
+      vardtIPP2=$(date -u -d "$(date +"%Y-%m-%d $vargt")"  +%s)
       echo "$line1 $vardtIPP2" >> $filePath/stat12.txt
 done< $filePath/stat11.txt
 
