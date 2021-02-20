@@ -1,7 +1,9 @@
 # Remailer Assay Script  
 Mixmaster Remailer 24h Chronograph/Continuity Analysis  
     
-Example: https://mixport.xyz/assay.html  
+<p>
+<img src="/images/analysis.png" width="1218" height="1615">  
+</p>
 ```
 #!/bin/bash
 #
